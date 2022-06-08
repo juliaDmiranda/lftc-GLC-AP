@@ -20,7 +20,7 @@ def fazConversao(gramatica):
 	#Criar transições equivalentes e capturar simbolos terminais
 	for linha in gramatica:
 		#Monta transicao e adiciona ao automato
-		transicao = "(q,@,"+linha[0]+")=(q,"+linha[3::]+")"
+		transicao = f'(q,@,{linha[0]})=(q,{linha[3::]})'
 		automato.append(transicao)
 		#Captura simbolos e guarda
 		for caracter in linha[3::]:
@@ -33,7 +33,7 @@ def fazConversao(gramatica):
 	#Criar transições finais a partir de simbolos capturados
 	for simbolo in simbolos:
 		#Monta transicao e adiciona ao automato
-		transicao = "(q,"+simbolo+","+simbolo+")=(q,@)"
+		transicao = f'(q,{simbolo},{simbolo})=(q,@)'
 		automato.append(transicao)
 	return automato
 
