@@ -11,18 +11,28 @@ def leGramatica(nomeArquivo):
 	return filtra(gramatica)
 
 def fazConversao(gramatica):
+	#Lista de simbolos
 	simbolos = []
+
+	#Linhas do automato
 	automato = []
+
 	#Criar transições equivalentes e capturar simbolos terminais
 	for linha in gramatica:
+		#Monta transicao e adiciona ao automato
+		transicao = "(q,@,"+linha[0]+")=(q,"+linha[3::]+")"
+		automato.append(transicao)
+		#Captura simbolos e guarda
 		for caracter in linha[3::]:
 			if caracter.islower() and not caracter in simbolos:
 				simbolos.append(caracter)
-		transicao = "(q,@,"+linha[0]+")=(q,"+linha[3::]+")"
-		automato.append(transicao)
-	#Criar transições finais a partir de simbolos capturados
+
+	#Ordena simbolos em ordem alfabetica
 	simbolos = sorted(simbolos)
+
+	#Criar transições finais a partir de simbolos capturados
 	for simbolo in simbolos:
+		#Monta transicao e adiciona ao automato
 		transicao = "(q,"+simbolo+","+simbolo+")=(q,@)"
 		automato.append(transicao)
 	return automato
