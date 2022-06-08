@@ -35,6 +35,7 @@ def fazConversao(gramatica):
 		#Monta transicao e adiciona ao automato
 		transicao = f'(q,{simbolo},{simbolo})=(q,@)'
 		automato.append(transicao)
+		
 	return automato
 
 #Captura argumentos passados
